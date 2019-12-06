@@ -5,6 +5,8 @@ app.get('/', (req, res) => {
     res.send('Hello Express.');
 });
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/about', (req, res) => {
     res.send('<h1>About Page</h1>');
 });
