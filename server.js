@@ -6,10 +6,14 @@ const fs = require('fs');
 app.use((req, res, next) => {
     let now = new Date().toString();
     let log = `${now}: ${req.method} ${req.url}`;
-    fs.appendFile('server.log', log + '\n');
-    console.log(`${now}: ${req.method} ${req.url}`);
+    fs.appendFile('server.log', log + '\n', (error) => {
+        if(error) {
+            console.log('Unable to save server logs');
+        }
+    });
+    console.log(log);
     next();
-})
+});
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -24,6 +28,11 @@ hbs.registerHelper('screamIt', (text) => {
 
 app.use(express.static(__dirname + '/public')); 
 
+app.use('/maintenance', (req, res, next) => {
+    res.render('maintenance.hbs');
+    next();
+});
+// other pages won't be rendered if next function isn't not called.
 app.get('/', (req, res) => {
     res.render('home.hbs', {
         pageTitle: 'Homepage',
