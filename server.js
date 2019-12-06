@@ -1,7 +1,13 @@
 const express = require('express');
 const hbs = require('hbs');
-
 const app = express();
+const fs = require('fs');
+
+app.use((req, res, next) => {
+    let now = new Date().toString();
+    console.log(`${now}: ${req.method} ${req.url}`);
+    next();
+})
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -37,4 +43,5 @@ app.get('/bad', (req, res) => {
         errorMessage: "Unable to display data"
     });
 });
+
 app.listen(3000);
