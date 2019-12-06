@@ -5,6 +5,8 @@ const fs = require('fs');
 
 app.use((req, res, next) => {
     let now = new Date().toString();
+    let log = `${now}: ${req.method} ${req.url}`;
+    fs.appendFile('server.log', log + '\n');
     console.log(`${now}: ${req.method} ${req.url}`);
     next();
 })
