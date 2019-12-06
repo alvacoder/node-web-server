@@ -7,10 +7,8 @@
     <title>Homepage</title>
 </head>
 <body>
-    <h1> {{ pageTitle }}</h1>
-    <p> {{ welcomeMessage }}</p>
+    {{> header }}
+    <p> {{screamIt welcomeMessage}}</p>
+    {{> footer }}
 </body>
-<footer>
-    <p>Copyright &copy {{ currentYear }}</p>
-</footer>
 </html>
