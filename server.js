@@ -48,6 +48,13 @@ app.get('/about', (req, res) => {
     });
 });
 
+app.use('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects Page',
+        welcomeMessage: 'Welcome to my portfolio'
+    });
+})
+
 app.get('/bad', (req, res) => {
     res.send({
         name: "Idris",
