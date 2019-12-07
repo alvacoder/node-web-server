@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha **/*.test.js",
-    "start": "node server.js"
+    "test-watch": "nodemon --exec \"npm test\""
   },
   "author": "Idris Adeniji",
   "license": "ISC",
